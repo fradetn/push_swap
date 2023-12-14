@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_longatoi.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 23:37:29 by nfradet           #+#    #+#             */
-/*   Updated: 2023/12/12 15:27:27 by nfradet          ###   ########.fr       */
+/*   Created: 2023/12/12 15:28:03 by nfradet           #+#    #+#             */
+/*   Updated: 2023/12/12 15:35:29 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-static int	ft_isnum(int c)
+static int	ft_isnum2(int c)
 {
 	if ((c > 47 && c < 58))
 	{
@@ -21,7 +21,7 @@ static int	ft_isnum(int c)
 	return (0);
 }
 
-static int	ft_isspace(char c)
+static int	ft_isspace2(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v')
 		return (1);
@@ -30,42 +30,33 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-static char	*ft_str_nospace(char *str)
+static char	*ft_str_nospace2(char *str)
 {
-	while (ft_isspace(*str) == 1)
+	while (ft_isspace2(*str) == 1)
 	{
 		str++;
 	}
 	return (str);
 }
 
-int	ft_atoi(const char *str)
+long int	ft_longatoi(const char *str)
 {
-	int	res;
-	int	sign;
+	long int	res;
+	long int	sign;
 
 	res = 0;
 	sign = 1;
-	str = ft_str_nospace((char *)str);
+	str = ft_str_nospace2((char *)str);
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
 			sign = -1;
 		str++;
 	}
-	while (ft_isnum(*str) != 0)
+	while (ft_isnum2(*str) != 0)
 	{
 		res = res * 10 + (*str - '0');
 		str++;
 	}
 	return (res * sign);
 }
-
-/* 
-#include <limits.h>
-#include <stdio.h>
-
-int	main()
-{
-	ft_printf("%d\n", ft_atoi("oui"));
-} */

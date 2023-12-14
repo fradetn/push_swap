@@ -13,7 +13,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = $(SRC_DIR)push_swap.c
+SRC = $(wildcard $(SRC_DIR)*.c)
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
 all: $(NAME)
@@ -45,7 +45,7 @@ clean:
 fclean: clean
 	@echo "$(RED)Suppression de $(NAME)..."
 	@rm -f $(NAME)
-	@echo "$(RED)Suppression de la libft..."
+	@echo "$(RED)Suppression de la libft...\n"
 	@$(MAKE) fclean -C $(LIBFT_DIR) > /dev/null 2>&1
 
 re: fclean all
