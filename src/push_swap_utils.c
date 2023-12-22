@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:04:25 by nfradet           #+#    #+#             */
-/*   Updated: 2023/12/12 11:12:23 by nfradet          ###   ########.fr       */
+/*   Updated: 2023/12/19 17:07:13 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	**ft_tabjoin(char **t1, char **t2)
 	while (t2 && *t2)
 		tab[i++] = ft_strdup(*t2++);
 	tab[i] = '\0';
+	if (t1 != NULL)
+		ft_freetab(t1);
 	return (tab);
 }
 

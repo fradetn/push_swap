@@ -25,8 +25,8 @@ char	**extract_args(char **argv)
 	{
 		tmp = ft_split(argv[i], ' ');
 		tab = ft_tabjoin(tab, tmp);
+		ft_freetab(tmp);
 		i++;
-		free(tmp);
 	}
 	return (tab);
 }
@@ -95,31 +95,45 @@ int	check_args(char **argv, t_pile **pile)
 	while (tab[i])
 	{
 		if (is_valid_int(tab[i]) == 0)
-			return (0);
+			return (ft_freetab(tab), 0);
 		i++;
 	}
 	tab_to_pile(tab, pile);
+	ft_freetab(tab);
 	if (check_doublons(pile) == 0)
-		return (0);
+		return (ft_pileclear(pile), 0);
 	return (1);
 }
+
 
 #include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	t_pile	*pile;
+	t_pile	*pilea;
+	// t_pile	*pileb;
 
-	pile = NULL;
+	pilea = NULL;
+	// pileb = NULL;
 	(void) argc;
-	if (check_args(argv, &pile) == 0)
+	if (check_args(argv, &pilea) == 0)
 		write(STDERR_FILENO, "Error\n", 6);
 	else
 	{
-		while (pile != NULL)
+		rev_rotate(&pilea);
+		// rev_rotate(&pilea);
+		// rev_rotate(&pilea);
+		ft_printf("pile a : \n");
+		while (pilea != NULL)
 		{
-			ft_printf("%d\n", pile->val);
-			pile = pile->next;
+			ft_printf("%d\n", pilea->val);
+			pilea = pilea->next;
 		}
+		// ft_printf("pile b : \n");
+		// while (pileb != NULL)
+		// {
+		// 	ft_printf("%d\n", pileb->val);
+		// 	pileb = pileb->next;
+		// }
 	}
 }
