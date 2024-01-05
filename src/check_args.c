@@ -104,36 +104,3 @@ int	check_args(char **argv, t_pile **pile)
 		return (ft_pileclear(pile), 0);
 	return (1);
 }
-
-
-#include <stdio.h>
-
-int	main(int argc, char **argv)
-{
-	t_pile	*pilea;
-	// t_pile	*pileb;
-
-	pilea = NULL;
-	// pileb = NULL;
-	(void) argc;
-	if (check_args(argv, &pilea) == 0)
-		write(STDERR_FILENO, "Error\n", 6);
-	else
-	{
-		rev_rotate(&pilea);
-		// rev_rotate(&pilea);
-		// rev_rotate(&pilea);
-		ft_printf("pile a : \n");
-		while (pilea != NULL)
-		{
-			ft_printf("%d\n", pilea->val);
-			pilea = pilea->next;
-		}
-		// ft_printf("pile b : \n");
-		// while (pileb != NULL)
-		// {
-		// 	ft_printf("%d\n", pileb->val);
-		// 	pileb = pileb->next;
-		// }
-	}
-}

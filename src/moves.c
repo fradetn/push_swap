@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:49:02 by nfradet           #+#    #+#             */
-/*   Updated: 2023/12/19 21:21:03 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/05 07:24:58 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ void	swap(t_pile **pile)
 	{
 		sec = (*pile)->next;
 		(*pile)->next = sec->next;
+		(*pile)->prev = sec;
 		sec->next = (*pile);
+		sec->prev = NULL;
 		*pile = sec;
+		reajust_index(pile);
 	}
 }
 
@@ -34,7 +37,9 @@ void	push(t_pile **from, t_pile **to)
 		tmp = *from;
 		*from = (*from)->next;
 		tmp->next = NULL;
+		(*from)->prev = NULL;
 		ft_pileadd_front(to, tmp);
+		reajust_index(from);
 	}
 }
 
@@ -46,8 +51,11 @@ void	rotate(t_pile **pile)
 	{
 		tmp = *pile;
 		*pile = tmp->next;
+		(*pile)->prev = NULL;
 		tmp->next = NULL;
+		tmp->prev = NULL;
 		ft_pileadd_back(pile, tmp);
+		reajust_index(pile);
 	}
 }
 
@@ -58,11 +66,11 @@ void	rev_rotate(t_pile **pile)
 
 	if (ft_pilesize(*pile) > 1)
 	{
+		last = ft_pilelast(*pile);
 		av_der = *pile;
 		while (av_der->next->next != NULL)
 			av_der = av_der->next;
 		av_der->next = NULL;
-		last = ft_pilelast(*pile);
 		ft_pileadd_front(pile, last);
 	}
 }

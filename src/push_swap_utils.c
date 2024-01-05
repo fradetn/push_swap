@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:04:25 by nfradet           #+#    #+#             */
-/*   Updated: 2023/12/19 17:07:13 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/05 07:08:19 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,33 @@ char	**ft_tabjoin(char **t1, char **t2)
 	if (t1 != NULL)
 		ft_freetab(t1);
 	return (tab);
+}
+
+int	get_val(t_pile **pile, int indice)
+{
+	int 	i;
+	t_pile	*cur;
+
+	i = 0;
+	cur = *pile;
+	while (cur != NULL && i++ < indice)
+		cur = cur->next;
+	return (cur->val);
+}
+
+void	reajust_index(t_pile **pile)
+{
+	int		i;
+	t_pile	*cur;
+
+	i = 0;
+	cur = *pile;
+	while (cur != NULL)
+	{
+		cur->index = i;
+		i++;
+		cur = cur->next;
+	}
 }
 
 /* int	main(int argc, char **argv)

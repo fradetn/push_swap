@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:21:16 by nfradet           #+#    #+#             */
-/*   Updated: 2023/12/12 13:51:04 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/05 07:11:33 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_pile	*ft_pilenew(int	val)
 	if (!nod)
 		return (NULL);
 	nod->val = val;
+	nod->index = 0;
+	nod->prev = NULL;
 	nod->next = NULL;
 	return (nod);
 }
@@ -43,7 +45,11 @@ void	ft_pileadd_back(t_pile **pile, t_pile *new)
 	if (last == NULL)
 		*pile = new;
 	else
+	{
 		last->next = new;
+		new->prev = last;
+		new->index = last->index + 1;
+	}
 }
 
 void	ft_pileadd_front(t_pile **pile, t_pile *new)
@@ -54,7 +60,9 @@ void	ft_pileadd_front(t_pile **pile, t_pile *new)
 		return ;
 	}
 	new->next = *pile;
+	(*pile)->prev = new;
 	*pile = new;
+	reajust_index(pile);
 }
 
 int	ft_pilesize(t_pile *pile)
