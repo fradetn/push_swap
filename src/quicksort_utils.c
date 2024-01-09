@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   quicksort_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 13:28:30 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/09 05:36:35 by nfradet          ###   ########.fr       */
+/*   Created: 2024/01/09 08:28:07 by nfradet           #+#    #+#             */
+/*   Updated: 2024/01/09 09:57:45 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_pileclear(t_pile **pile)
+int	is_sorted(t_pile *pile)
 {
-	if (pile && *pile)
+	t_pile	*j_pile;
+
+	while (pile != NULL)
 	{
-		ft_pileclear(&(*pile)->next);
-		if (*pile != NULL)
-			free(*pile);
-		*pile = NULL;
+		j_pile = pile->next;
+		while (j_pile != NULL)
+		{
+			if (j_pile->val < pile->val)
+				return (0);
+			j_pile = j_pile->next;
+		}
+		pile = pile->next;
 	}
+	return (1);
 }
 
-void	ft_freetab(char **tab)
-{
-	int	i;
+// void	bubble_swap(t_pile **pile, int i1, int i2)
+// {
+// 	int	tmp;
 
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	// free(tab[i]);
-	// free(tab);
-}
+// 	tmp = get_val(pile, i1);
+// 	set_val(pile, i1, get_val(pile, i2));
+// 	set_val(pile, i2, tmp);
+// }

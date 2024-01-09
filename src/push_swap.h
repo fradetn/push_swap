@@ -32,6 +32,7 @@ char		**ft_tabjoin(char **t1, char **t2);
 void		ft_freetab(char **tab);
 int			check_args(char **argv, t_pile **pile);
 int			get_val(t_pile **pile, int indice);
+int			set_val(t_pile **pile, int index, int val);
 
 t_pile		*ft_pilelast(t_pile *pile);
 t_pile		*ft_pilenew(int	val);
@@ -48,7 +49,9 @@ void		push(t_pile **from, t_pile **to);
 void		rotate(t_pile **pile);
 void		rev_rotate(t_pile **pile);
 
-int			choose_pivot(t_pile **pile, int low, int hight);
+// int			get_pivot(t_pile *pile);
+int			is_sorted(t_pile *pile);
+// void		bubble_swap(t_pile **pile, int i1, int i2);
 
 
 #endif

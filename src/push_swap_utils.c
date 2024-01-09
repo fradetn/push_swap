@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:04:25 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/05 07:08:19 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/09 08:47:09 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,22 @@ int	get_val(t_pile **pile, int indice)
 	while (cur != NULL && i++ < indice)
 		cur = cur->next;
 	return (cur->val);
+}
+
+int	set_val(t_pile **pile, int index, int val)
+{
+	int 	i;
+	t_pile	*cur;
+
+	i = 0;
+	cur = *pile;
+	while (cur != NULL && i++ < index)
+		cur = cur->next;
+	if (cur == NULL)
+		return (0);
+	else
+		cur->val = val;
+	return (1);
 }
 
 void	reajust_index(t_pile **pile)

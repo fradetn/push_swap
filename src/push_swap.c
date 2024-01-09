@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_pile	*pilea;
 	t_pile	*last;
-	t_pile	*new;
 	// t_pile	*pileb;
 
 	(void)argc;
@@ -27,20 +26,26 @@ int	main(int argc, char **argv)
 	else
 	{
 		ft_printf("pile a : \n");
+		// set_val(&pilea, 3, -10);
+		// ft_printf("%d\n", is_sorted(pilea));
 		// ft_printf("%d", choose_pivot(&pilea, get_val(&pilea, 0), get_val(&pilea, ft_pilesize(pilea) - 1)));
-		new = ft_pilenew(100);
-		ft_pileadd_back(&pilea, new);
+		// push(&pilea, &pileb);
+		// push(&pileb, &pilea);
+		// bubble_swap(&pilea, 0, 2);
+		get_pivot(pilea);
 		last = ft_pilelast(pilea);
 		while (last != NULL)
 		{
-			ft_printf("pile[%d] = %d\n", last->index, last->val);
+			ft_printf("pilea[%d] = %d\n", last->index, last->val);
 			last = last->prev;
 		}
+
+		// last = ft_pilelast(pileb);
 		// ft_printf("pile b : \n");
-		// while (pileb != NULL)
+		// while (last != NULL)
 		// {
-		// 	ft_printf("%d\n", pileb->val);
-		// 	pileb = pileb->next;
+		// 	ft_printf("pileb[%d] = %d\n", last->index, last->val);
+		// 	last = last->prev;
 		// }
 	}
 }

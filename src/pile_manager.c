@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:21:16 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/05 07:11:33 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/09 05:57:49 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	ft_pileadd_back(t_pile **pile, t_pile *new)
 
 void	ft_pileadd_front(t_pile **pile, t_pile *new)
 {
-	if (pile == NULL)
+	// ft_printf("%p\n", *pile);
+	if (*pile == NULL)
 	{
 		*pile = new;
 		return ;
