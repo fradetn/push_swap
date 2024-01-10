@@ -25,6 +25,12 @@ typedef struct s_pile
 	struct s_pile	*next;
 }	t_pile;
 
+typedef struct s_piles
+{
+	t_pile	*a;
+	t_pile	*b;
+}	t_piles;
+
 int			main(int argc, char **argv);
 int			ft_tablen(char **tab);
 char		**extract_args(char **argv);
@@ -33,6 +39,7 @@ void		ft_freetab(char **tab);
 int			check_args(char **argv, t_pile **pile);
 int			get_val(t_pile **pile, int indice);
 int			set_val(t_pile **pile, int index, int val);
+int			get_index(t_pile *pile, int val);
 
 t_pile		*ft_pilelast(t_pile *pile);
 t_pile		*ft_pilenew(int	val);
@@ -52,6 +59,12 @@ void		rev_rotate(t_pile **pile);
 // int			get_pivot(t_pile *pile);
 int			is_sorted(t_pile *pile);
 // void		bubble_swap(t_pile **pile, int i1, int i2);
+void		ft_move(t_piles *piles, char *move);
+
+void		turk(t_piles *pile);
+int			get_maxval(t_pile *pile);
+int			get_minval(t_pile *pile);
+int			get_ind_to_put(t_pile *b, int val);
 
 
 #endif

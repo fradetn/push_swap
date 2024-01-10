@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:21:16 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/09 05:57:49 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/10 08:00:30 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_pile	*ft_pilenew(int	val)
 	if (!nod)
 		return (NULL);
 	nod->val = val;
-	nod->index = 0;
+	nod->index = 1;
 	nod->prev = NULL;
 	nod->next = NULL;
 	return (nod);

@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:49:02 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/09 05:59:51 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/10 08:00:58 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	swap(t_pile **pile)
 		sec = (*pile)->next;
 		(*pile)->next = sec->next;
 		(*pile)->prev = sec;
-		(sec->next)->prev = (*pile);
+		if (sec->next != NULL)
+			(sec->next)->prev = (*pile);
 		sec->next = (*pile);
 		sec->prev = NULL;
 		*pile = sec;
