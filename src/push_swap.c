@@ -14,37 +14,34 @@
 
 int	main(int argc, char **argv)
 {
-	t_pile	*pilea;
-	t_pile	*pileb;
 	t_pile	*first;
 	t_piles	piles;
+	t_nbrot	nbrot;
+	int		topush;
+	int		toput;
 
+
+	piles.a = NULL;
+	piles.b = NULL;
 	(void)argc;
-	pilea = NULL;
-	pileb = NULL;
-	if (check_args(argv, &pilea) == 0)
+	if (check_args(argv, &(piles.a)) == 0)
 		write(STDERR_FILENO, "Error\n", 6);
 	else
 	{
-		ft_printf("pile a : \n");
-		piles.a = pilea;
-		piles.b = pileb;
-		// ft_move(&piles, "pb");
-		// // ft_move(&piles, "pb");
-		// ft_move(&piles, "rb");
-		// ft_move(&piles, "sb");
-		// ft_move(&piles, "ss");
+		ft_move(&piles, "pb");
+		ft_move(&piles, "pb");
+		ft_move(&piles, "pb");
+		
+		topush = get_ind_to_push(&piles);
+		toput = get_ind_to_put(piles.b, get_val(&(piles.a), topush));
+		nbrot = get_rotations(&piles, topush, toput);
+		ft_printf("index a push : %d\n", topush);
+		ft_printf("where to put : %d\n", toput);
+		ft_printf("rot_a = %d, rot_b = %d", nbrot.a, nbrot.b);
 
 		// turk(&piles);
-
-		// set_val(&pilea, 3, -10);
-		// ft_printf("%d\n", is_sorted(pilea));
-		// ft_printf("%d", choose_pivot(&pilea, get_val(&pilea, 0), get_val(&pilea, ft_pilesize(pilea) - 1)));
-		// push(&pilea, &pileb);
-		// push(&pileb, &pilea);
-		// bubble_swap(&pilea, 0, 2);
-		// get_pivot(pilea);
-		ft_printf("%d\n\n", get_ind_to_put(piles.a, 5));
+		// ft_printf("%d\n\n", get_ind_to_put(piles.a, 5));
+		ft_printf("\npile a : \n");
 		first = piles.a;
 		while (first != NULL)
 		{

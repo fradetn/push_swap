@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:33:11 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/10 11:30:30 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/11 11:27:33 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,47 +135,92 @@ int	ft_max(int a, int b)
 * pour faire remonter l'index ia en haut de la pile A
 * et l'index ib en haut de la pile B.
 */
-int	get_nbmoves(t_piles *piles, int ia, int ib)
+t_nbrot	get_rotations(t_piles *piles, int ia, int ib)
 {
-	int	rot_a;
-	int	rot_b;
-	int	revrot_a;
-	int	revrot_b;
-	int	nbmoves;
+	t_nbrot	nbrot;
+	t_nbrot	revrot;
+	int		nbmoves;
 
-	rot_a = ia - 1;
-	rot_b = ib - 1;
-	revrot_a = (ft_pilelast(piles->a)->index - ia) + 1;
-	revrot_b = (ft_pilelast(piles->b)->index - ib) + 1;
-	nbmoves = ft_min(rot_a, revrot_a) + ft_min(rot_b, revrot_b);
-	// if (nbmoves > ft_max(rot_a, rot_b))
-	// else if (nbmoves > ft_max(revrot_a, revrot_b))
-	// else
-}
-
-int	get_ind_to_push(t_pile *a)
-{
-	int	nbmove;
-	int	index;
-
-	nbmove = 0;
-	index = 0;
-	while (a != NULL)
+	revrot.a = (ft_pilelast(piles->a)->index - ia) + 1;
+	revrot.b = (ft_pilelast(piles->b)->index - ib) + 1;
+	nbmoves = ft_min(ia - 1, revrot.a) + ft_min(ib - 1, revrot.b);
+	if (nbmoves > ft_max(ia - 1, ib - 1))
 	{
-
+		nbrot.a = ia - 1;
+		nbrot.b = ib - 1;
+		nbmoves = ft_max(ia - 1, ib - 1);
 	}
-}
-
-void	turk(t_piles *piles)
-{
-	if (ft_pilesize(piles->a) == 3)
-		sort_three(&(piles->a));
+	else if (nbmoves > ft_max(revrot.a, revrot.b))
+	{
+		nbrot.a = -revrot.a;
+		nbrot.b = -revrot.b;
+		nbmoves = ft_max(revrot.a, revrot.b);
+	}
 	else
 	{
-		ft_move(piles, "pb");
-		ft_move(piles, "pb");
-		while (ft_pilesize(piles->a) > 3)
-		{
-		}
+		nbrot.a = ft_min(ia - 1, revrot.a);
+		nbrot.b = ft_min(ia - 1, revrot.b);
 	}
+	return (nbrot);
 }
+
+int	get_nbmoves(t_nbrot rot)
+{
+	if (rot.a <= 0 && rot.b <= 0)
+		return (ft_max(-rot.a, -rot.b));
+	else if (rot.a >= 0 && rot.b >= 0)
+		return (ft_max(rot.a, rot.b));
+	else
+		return (rot.a + rot.b);
+}
+
+/*
+* Return 1 if sec cost you less move
+* else return 0
+*/
+int	is_less_cost(t_nbrot first, t_nbrot sec)
+{
+	if (get_nbmoves(first) > get_nbmoves(sec))
+		return (1);
+	else
+		return (0);
+}
+
+int	get_ind_to_push(t_piles *piles)
+{
+	int		index;
+	int		ib;
+	t_nbrot	rot;
+	t_pile	*a;
+
+	ib = 0;
+	index = piles->a->index;
+	ib = get_ind_to_put(piles->b, piles->a->val);
+	rot = get_rotations(piles, piles->a->index, ib);
+	a = piles->a;
+	while (a != NULL)
+	{
+		ib = get_ind_to_put(piles->b, a->val);
+		if (is_less_cost(rot, get_rotations(piles, a->index, ib)) == 1)
+		{
+			index = a->index;
+			rot = get_rotations(piles, a->index, ib);
+		}
+		a = a->next;
+	}
+	return (index);
+}
+
+// void	turk(t_piles *piles)
+// {
+// 	if (ft_pilesize(piles->a) == 3)
+// 		sort_three(&(piles->a));
+// 	else
+// 	{
+// 		ft_move(piles, "pb");
+// 		ft_move(piles, "pb");
+// 		while (ft_pilesize(piles->a) > 3)
+// 		{
+// 		}
+// 	}
+// }

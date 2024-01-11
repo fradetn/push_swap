@@ -31,6 +31,12 @@ typedef struct s_piles
 	t_pile	*b;
 }	t_piles;
 
+typedef struct s_nbrot
+{
+	int	a;
+	int	b;
+}	t_nbrot;
+
 int			main(int argc, char **argv);
 int			ft_tablen(char **tab);
 char		**extract_args(char **argv);
@@ -61,10 +67,12 @@ int			is_sorted(t_pile *pile);
 // void		bubble_swap(t_pile **pile, int i1, int i2);
 void		ft_move(t_piles *piles, char *move);
 
-void		turk(t_piles *pile);
+// void		turk(t_piles *pile);
 int			get_maxval(t_pile *pile);
 int			get_minval(t_pile *pile);
 int			get_ind_to_put(t_pile *b, int val);
+int			get_ind_to_push(t_piles *piles);
+t_nbrot		get_rotations(t_piles *piles, int ia, int ib);
 
 
 #endif
