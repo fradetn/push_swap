@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 09:47:44 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/10 09:48:01 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/15 15:18:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,26 @@ int	get_minval(t_pile *pile)
 		pile = pile->next;
 	}
 	return (min);
+}
+
+int	get_nbmoves(t_nbrot rot)
+{
+	if (rot.a <= 0 && rot.b <= 0)
+		return (ft_max(-rot.a, -rot.b));
+	else if (rot.a >= 0 && rot.b >= 0)
+		return (ft_max(rot.a, rot.b));
+	else
+		return (ft_abs(rot.a) + ft_abs(rot.b));
+}
+
+/*
+* Return 1 if sec cost you less move
+* else return 0
+*/
+int	is_less_cost(t_nbrot first, t_nbrot sec)
+{
+	if (get_nbmoves(first) > get_nbmoves(sec))
+		return (1);
+	else
+		return (0);
 }

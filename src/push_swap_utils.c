@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:04:25 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/10 08:00:40 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/16 15:38:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_val(t_pile **pile, int indice)
 	int 	i;
 	t_pile	*cur;
 
-	i = 0;
+	i = 1;
 	cur = *pile;
 	while (cur != NULL && i++ < indice)
 		cur = cur->next;

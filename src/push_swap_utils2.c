@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 06:51:41 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/10 09:02:20 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/15 20:03:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 static void	ft_move2(t_piles *piles, char *move)
 {
-	if (ft_strncmp(move, "rra", 3) == 0)
+	int	len;
+
+	len = ft_strlen(move);
+	if (ft_strncmp(move, "rr", len) == 0)
+	{
+		rotate(&(piles->a));
+		rotate(&(piles->b));
+	}
+	else if (ft_strncmp(move, "rra", len) == 0)
 		rev_rotate(&(piles->a));
-	else if (ft_strncmp(move, "rrb", 3) == 0)
+	else if (ft_strncmp(move, "rrb", len) == 0)
 		rev_rotate(&(piles->b));
-	else if (ft_strncmp(move, "rrr", 3) == 0)
+	else if (ft_strncmp(move, "rrr", len) == 0)
 	{
 		rev_rotate(&(piles->a));
 		rev_rotate(&(piles->b));
@@ -28,28 +36,26 @@ static void	ft_move2(t_piles *piles, char *move)
 
 void	ft_move(t_piles *piles, char *move)
 {
-	if (ft_strncmp(move, "sa", 2) == 0)
+	int	len;
+
+	len = ft_strlen(move);
+	if (ft_strncmp(move, "sa", len) == 0)
 		swap(&(piles->a));
-	else if (ft_strncmp(move, "sb", 2) == 0)
+	else if (ft_strncmp(move, "sb", len) == 0)
 		swap(&(piles->b));
-	else if (ft_strncmp(move, "ss", 2) == 0)
+	else if (ft_strncmp(move, "ss", len) == 0)
 	{
 		swap(&(piles->a));
 		swap(&(piles->b));
 	}
-	else if (ft_strncmp(move, "pa", 2) == 0)
+	else if (ft_strncmp(move, "pa", len) == 0)
 		push(&(piles->b), &(piles->a));
-	else if (ft_strncmp(move, "pb", 2) == 0)
+	else if (ft_strncmp(move, "pb", len) == 0)
 		push(&(piles->a), &(piles->b));
-	else if (ft_strncmp(move, "ra", 2) == 0)
+	else if (ft_strncmp(move, "ra", len) == 0)
 		rotate(&(piles->a));
-	else if (ft_strncmp(move, "rb", 2) == 0)
+	else if (ft_strncmp(move, "rb", len) == 0)
 		rotate(&(piles->b));
-	else if (ft_strncmp(move, "rr", 2) == 0)
-	{
-		rotate(&(piles->a));
-		rotate(&(piles->b));
-	}
 	ft_move2(piles, move);
 }
 
