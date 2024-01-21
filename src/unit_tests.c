@@ -48,6 +48,7 @@ void	aff_piles(t_piles *piles)
 	t_pile	*start;
 	t_pile	*other;
 
+	ft_printf("\n");
 	if (ft_pilesize(piles->a) > ft_pilesize(piles->b))
 	{
 		start = piles->a;
@@ -91,5 +92,5 @@ void	aff_piles(t_piles *piles)
 			other = other->next;
 		}
 	}
-	ft_printf("-   -\na   b\n");
+	ft_printf("-   -\na   b\n\n");
 }

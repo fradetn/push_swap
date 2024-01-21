@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:28:30 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/09 05:36:35 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/21 13:54:23 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,19 @@ void	ft_freetab(char **tab)
 	int	i;
 
 	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	// free(tab[i]);
-	// free(tab);
+	if (tab != NULL)
+	{
+		while (tab[i])
+			free(tab[i++]);
+		free(tab[i]);
+		free(tab);
+	}
+}
+
+void	ft_free_piles(t_piles *piles)
+{
+	if (piles->a != NULL)
+		ft_pileclear(&piles->a);
+	if (piles->b != NULL)
+		ft_pileclear(&piles->b);
 }

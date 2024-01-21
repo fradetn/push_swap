@@ -14,20 +14,25 @@
 
 int	main(int argc, char **argv)
 {
-	// t_pile	*first;
 	t_piles	piles;
 
 	piles.a = NULL;
 	piles.b = NULL;
-	(void)argc;
-	if (check_args(argv, &(piles.a)) == 0)
+	if (argc < 2)
+		return (0);
+	else if (check_args(argv, &(piles.a)) == 0)
 		write(STDERR_FILENO, "Error\n", 6);
 	else
 	{
-		// ft_printf("toput = %d\n", get_ind_to_put(piles.a, 1));
-		// aff_piles(&piles);
-
-
-		turk(&piles);
+		if (is_sorted(piles.a) == 1)
+			return (ft_free_piles(&piles), 0);
+		else
+		{
+			if (ft_pilesize(piles.a) <= 4)
+				spec_cases(&piles);
+			else
+				first_part(&piles);
+		}
 	}
+	ft_free_piles(&piles);
 }

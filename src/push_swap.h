@@ -40,9 +40,11 @@ typedef struct s_nbrot
 /*Utils main and free*/
 int			main(int argc, char **argv);
 int			ft_tablen(char **tab);
+char		**ft_tabdup(char **tab);
 char		**extract_args(char **argv);
 char		**ft_tabjoin(char **t1, char **t2);
 void		ft_freetab(char **tab);
+void		ft_free_piles(t_piles *piles);
 int			check_args(char **argv, t_pile **pile);
 int			get_val(t_pile **pile, int indice);
 int			set_val(t_pile **pile, int index, int val);
@@ -66,7 +68,10 @@ void		rev_rotate(t_pile **pile);
 void		ft_move(t_piles *piles, char *move);
 
 /*algo and utils for algo*/
-void		turk(t_piles *pile);
+void		first_part(t_piles *piles);
+void		sec_part(t_piles *piles);
+void		sort_three(t_piles *piles);
+void		spec_cases(t_piles *piles);
 int			is_sorted(t_pile *pile);
 int			get_maxval(t_pile *pile);
 int			get_minval(t_pile *pile);

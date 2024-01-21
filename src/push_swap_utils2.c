@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 06:51:41 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/15 20:03:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/21 13:36:00 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,24 @@ int	get_index(t_pile *pile, int val)
 		pile = pile->next;
 	}
 	return (-1);
+}
+
+char	**ft_tabdup(char **tab)
+{
+	char	**cpy;
+	int		i;
+
+	if (tab == NULL)
+		return (NULL);
+	cpy = malloc(sizeof(char *) * (ft_tablen(tab) + 1));
+	if (!cpy)
+		return (NULL);
+	i = 0;
+	while (tab != NULL && tab[i])
+	{
+		cpy[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	cpy[i] = 0;
+	return (cpy);
 }

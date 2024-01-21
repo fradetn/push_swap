@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 09:47:44 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/15 15:18:14 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/21 10:27:57 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,22 @@ int	is_less_cost(t_nbrot first, t_nbrot sec)
 		return (1);
 	else
 		return (0);
+}
+
+int	is_sorted(t_pile *pile)
+{
+	t_pile	*j_pile;
+
+	while (pile != NULL)
+	{
+		j_pile = pile->next;
+		while (j_pile != NULL)
+		{
+			if (j_pile->val < pile->val)
+				return (0);
+			j_pile = j_pile->next;
+		}
+		pile = pile->next;
+	}
+	return (1);
 }

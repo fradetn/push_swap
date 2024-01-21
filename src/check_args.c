@@ -12,20 +12,24 @@
 
 #include "push_swap.h"
 
-
 char	**extract_args(char **argv)
 {
 	int		i;
 	char	**tmp;
 	char	**tab;
+	char	**cpy;
 
 	i = 1;
 	tab = NULL;
 	while (argv[i])
 	{
 		tmp = ft_split(argv[i], ' ');
-		tab = ft_tabjoin(tab, tmp);
+		cpy = ft_tabdup(tab);
+		ft_freetab(tab);
+		tab = NULL;
+		tab = ft_tabjoin(cpy, tmp);
 		ft_freetab(tmp);
+		ft_freetab(cpy);
 		i++;
 	}
 	return (tab);

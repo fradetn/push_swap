@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:04:25 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/16 15:38:26 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/21 13:33:50 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ char	**ft_tabjoin(char **t1, char **t2)
 	while (t2 && *t2)
 		tab[i++] = ft_strdup(*t2++);
 	tab[i] = '\0';
-	if (t1 != NULL)
-		ft_freetab(t1);
 	return (tab);
 }
 
