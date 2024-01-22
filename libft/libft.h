@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 12:14:09 by nfradet           #+#    #+#             */
-/*   Updated: 2023/11/06 00:38:11 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:14:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,20 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 
 /*printf functions*/
-int		ft_printf(const char *format, ...);
-int		ft_putunbr(unsigned int n);
-int		ft_putnbr_base(unsigned int nbr, char *base);
-int		ft_putulnbr_base(unsigned long nbr, char *base);
-int		ft_putchar_printf(char c, int fd);
-int		ft_putnbr_printf(int n, int fd);
-int		ft_putstr_printf(char *s, int fd);
+int			ft_printf(const char *format, ...);
+int			ft_putunbr(unsigned int n);
+int			ft_putnbr_base(unsigned int nbr, char *base);
+int			ft_putulnbr_base(unsigned long nbr, char *base);
+int			ft_putchar_printf(char c, int fd);
+int			ft_putnbr_printf(int n, int fd);
+int			ft_putstr_printf(char *s, int fd);
 
 /*get_next_line functions*/
-int		ft_linelen(char *s);
-char	*get_next_line(int fd);
-char	*get_actual_line(char *stash);
-char	*trunc_actual_line(char *stash);
-char	*read_to_stash(int fd, char	*stash);
+int			ft_linelen(char *s);
+char		*get_next_line(int fd);
+char		*get_actual_line(char *stash);
+char		*trunc_actual_line(char *stash);
+char		*read_to_stash(int fd, char	*stash);
 
 /*Bonus functions*/
 typedef struct s_list

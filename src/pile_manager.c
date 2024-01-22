@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pile_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:21:16 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/10 08:00:30 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:03:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_pile	*ft_pilelast(t_pile *pile)
 	return (pile);
 }
 
-t_pile	*ft_pilenew(int	val)
+t_pile	*ft_pilenew(int val)
 {
 	t_pile	*nod;
 
@@ -54,7 +54,6 @@ void	ft_pileadd_back(t_pile **pile, t_pile *new)
 
 void	ft_pileadd_front(t_pile **pile, t_pile *new)
 {
-	// ft_printf("%p\n", *pile);
 	if (*pile == NULL)
 	{
 		*pile = new;

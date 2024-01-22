@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:49:02 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/10 08:00:58 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:10:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,11 @@ void	rev_rotate(t_pile **pile)
 		last->prev = NULL;
 		ft_pileadd_front(pile, last);
 	}
+}
+
+void	get_three_val(t_pile *p, int *a, int *b, int *c)
+{
+	*a = get_val(&p, 1);
+	*b = get_val(&p, 2);
+	*c = get_val(&p, 3);
 }

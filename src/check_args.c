@@ -38,7 +38,7 @@ char	**extract_args(char **argv)
 int	is_valid_int(char *val)
 {
 	int	i;
-	
+
 	if (ft_longatoi(val) > 2147483647)
 		return (0);
 	else if (ft_longatoi(val) < -2147483648)
@@ -59,7 +59,7 @@ void	tab_to_pile(char **tab, t_pile **pile)
 {
 	t_pile	*cur;
 	int		i;
-	
+
 	i = 0;
 	while (tab[i])
 	{
@@ -93,7 +93,7 @@ int	check_args(char **argv, t_pile **pile)
 {
 	char	**tab;
 	int		i;
-	
+
 	i = 0;
 	tab = extract_args(argv);
 	while (tab[i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:33:11 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/21 23:12:48 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:09:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@ get_ind_to_push :
 	de la pile B sans oublier le push.
 */
 
-void	get_three_val(t_pile *p, int *a, int *b, int *c)
-{
-	*a = get_val(&p, 1);
-	*b = get_val(&p, 2);
-	*c = get_val(&p, 3);
-}
-
 void	sort_three(t_piles *piles)
 {
 	int	a;
@@ -51,16 +44,16 @@ void	sort_three(t_piles *piles)
 
 	get_three_val(piles->a, &a, &b, &c);
 	if (a > b && b < c && c < a)
-		ft_move(piles, "rra");
+		ft_move(piles, "rra", 1);
 	get_three_val(piles->a, &a, &b, &c);
 	if ((a > b && b < c && c > a) || (a > b && b > c && c < a))
-		ft_move(piles, "sa");
+		ft_move(piles, "sa", 1);
 	get_three_val(piles->a, &a, &b, &c);
 	if (a < b && b > c)
 	{
-		ft_move(piles, "rra");
+		ft_move(piles, "rra", 1);
 		if (a < c)
-			ft_move(piles, "sa");
+			ft_move(piles, "sa", 1);
 	}
 }
 
@@ -149,75 +142,21 @@ int	get_ind_to_push(t_piles *piles)
 	return (index);
 }
 
-void	do_moves_indep(t_piles *piles, t_nbrot rot)
-{
-	while (rot.a > 0)
-	{
-		ft_move(piles, "ra");
-		rot.a -= 1;
-	}
-	while (rot.a < 0)
-	{
-		ft_move(piles, "rra");
-		rot.a += 1;
-	}
-	while (rot.b < 0)
-	{
-		ft_move(piles, "rrb");
-		rot.b += 1;
-	}
-	while (rot.b > 0)
-	{
-		ft_move(piles, "rb");
-		rot.b -= 1;
-	}
-}
-
-void	do_moves(t_piles *piles, t_nbrot rot)
-{
-	while (rot.a < 0 && rot.b < 0)
-	{
-		ft_move(piles, "rrr");
-		rot.a += 1;
-		rot.b += 1;
-	}
-	while (rot.a > 0 && rot.b > 0)
-	{
-		ft_move(piles, "rr");
-		rot.a -= 1;
-		rot.b -= 1;
-	}
-	do_moves_indep(piles, rot);
-}
-
 void	first_part(t_piles *piles)
 {
 	int		topush;
 	int		toput;
 	t_nbrot	rot;
 
-	ft_move(piles, "pb");
-	ft_move(piles, "pb");
+	ft_move(piles, "pb", 1);
+	ft_move(piles, "pb", 1);
 	while (ft_pilesize(piles->a) > 3)
 	{
 		topush = get_ind_to_push(piles);
 		toput = get_ind_to_put(piles->b, get_val(&piles->a, topush));
 		rot = get_rotations(piles, topush, toput);
 		do_moves(piles, rot);
-		ft_move(piles, "pb");
+		ft_move(piles, "pb", 1);
 	}
 	sec_part(piles);
-}
-
-void	spec_cases(t_piles *piles)
-{
-	if (ft_pilesize(piles->a) == 2)
-		ft_move(piles, "sa");
-	else if (ft_pilesize(piles->a) == 4)
-	{
-		ft_move(piles, "pb");
-		sec_part(piles);
-	}
-	else if (ft_pilesize(piles->a) == 3)
-		sort_three(piles);
 }

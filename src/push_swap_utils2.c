@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 06:51:41 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/21 23:12:57 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:08:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_move2(t_piles *piles, char *move)
+static void	ft_move2(t_piles *piles, char *move, int boolean)
 {
 	int	len;
 
@@ -31,10 +31,11 @@ static void	ft_move2(t_piles *piles, char *move)
 		rev_rotate(&(piles->a));
 		rev_rotate(&(piles->b));
 	}
-	ft_printf("%s\n", move);
+	if (boolean == 1)
+		ft_printf("%s\n", move);
 }
 
-void	ft_move(t_piles *piles, char *move)
+void	ft_move(t_piles *piles, char *move, int boolean)
 {
 	int	len;
 
@@ -56,7 +57,7 @@ void	ft_move(t_piles *piles, char *move)
 		rotate(&(piles->a));
 	else if (ft_strncmp(move, "rb", len) == 0)
 		rotate(&(piles->b));
-	ft_move2(piles, move);
+	ft_move2(piles, move, boolean);
 }
 
 int	get_index(t_pile *pile, int val)
@@ -88,4 +89,17 @@ char	**ft_tabdup(char **tab)
 	}
 	cpy[i] = 0;
 	return (cpy);
+}
+
+void	spec_cases(t_piles *piles)
+{
+	if (ft_pilesize(piles->a) == 2)
+		ft_move(piles, "sa", 1);
+	else if (ft_pilesize(piles->a) == 4)
+	{
+		ft_move(piles, "pb", 1);
+		sec_part(piles);
+	}
+	else if (ft_pilesize(piles->a) == 3)
+		sort_three(piles);
 }

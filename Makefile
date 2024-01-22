@@ -7,16 +7,39 @@ SRC_DIR = src/
 LIBFT_DIR = libft/
 
 NAME = push_swap
+BONUS_NAME = checker
 LIBFT = $(LIBFT_DIR)libft.a
 
 CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = $(wildcard $(SRC_DIR)*.c)
+SRC = $(SRC_DIR)algo_next.c $(SRC_DIR)algo_utils.c $(SRC_DIR)algo.c \
+	$(SRC_DIR)check_args.c $(SRC_DIR)ft_free.c $(SRC_DIR)ft_longatoi.c \
+	$(SRC_DIR)ft_math.c $(SRC_DIR)moves.c $(SRC_DIR)pile_manager.c \
+	$(SRC_DIR)push_swap.c $(SRC_DIR)push_swap_utils.c \
+	$(SRC_DIR)push_swap_utils2.c
+
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
+
+SRC_BONUS = $(SRC_DIR)bonus_checker.c $(SRC_DIR)algo_next.c \
+	$(SRC_DIR)algo_utils.c $(SRC_DIR)algo.c \
+	$(SRC_DIR)check_args.c $(SRC_DIR)ft_free.c $(SRC_DIR)ft_longatoi.c \
+	$(SRC_DIR)ft_math.c $(SRC_DIR)moves.c $(SRC_DIR)pile_manager.c \
+	$(SRC_DIR)push_swap_utils.c $(SRC_DIR)push_swap_utils2.c
+
+OBJ_BONUS = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC_BONUS))
+
 all: $(NAME)
+
+bonus:$(BONUS_NAME)
+
+$(BONUS_NAME): $(OBJ_BONUS) $(LIBFT)
+	@echo "$(YELLOW)Compilation du checker en cours..."
+	@$(CC) -g $(CFLAGS) $(OBJ_BONUS) $(LIBFT) -o $(BONUS_NAME)
+	@echo "$(GREEN)Compilation terminée.\n"
+
 
 $(NAME): $(OBJ) $(LIBFT)
 	@echo "$(YELLOW)Compilation en cours..."
@@ -41,10 +64,12 @@ $(LIBFT):
 clean:
 	@echo "$(RED)Nettoyage des fichiers objets..."
 	@rm -rf $(OBJ_DIR)
+	@$(MAKE) clean -C $(LIBFT_DIR) > /dev/null 2>&1
 
 fclean: clean
 	@echo "$(RED)Suppression de $(NAME)..."
 	@rm -f $(NAME)
+	@rm -f $(BONUS_NAME)
 	@echo "$(RED)Suppression de la libft...\n"
 	@$(MAKE) fclean -C $(LIBFT_DIR) > /dev/null 2>&1
 

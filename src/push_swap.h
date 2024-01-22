@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_C
-# define PUSH_SWAP_C
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "../libft/libft.h"
 # include <unistd.h>
@@ -52,7 +52,7 @@ int			get_index(t_pile *pile, int val);
 
 /*To manage pile structure*/
 t_pile		*ft_pilelast(t_pile *pile);
-t_pile		*ft_pilenew(int	val);
+t_pile		*ft_pilenew(int val);
 void		ft_pileadd_back(t_pile **pile, t_pile *new);
 void		ft_pileadd_front(t_pile **pile, t_pile *new);
 int			ft_pilesize(t_pile *pile);
@@ -65,7 +65,7 @@ void		swap(t_pile **pile);
 void		push(t_pile **from, t_pile **to);
 void		rotate(t_pile **pile);
 void		rev_rotate(t_pile **pile);
-void		ft_move(t_piles *piles, char *move);
+void		ft_move(t_piles *piles, char *move, int boolean);
 
 /*algo and utils for algo*/
 void		first_part(t_piles *piles);
@@ -80,6 +80,7 @@ int			get_ind_to_push(t_piles *piles);
 t_nbrot		get_rotations(t_piles *piles, int ia, int ib);
 int			get_nbmoves(t_nbrot rot);
 void		do_moves(t_piles *piles, t_nbrot rot);
+void		get_three_val(t_pile *p, int *a, int *b, int *c);
 
 /*maths functions*/
 int			ft_min(int a, int b);

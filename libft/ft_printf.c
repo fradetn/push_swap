@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 18:45:42 by nfradet           #+#    #+#             */
-/*   Updated: 2023/11/05 05:55:50 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:15:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_print_ptr(unsigned long ptr)
 {
 	if (ptr)
 	{
-		return (ft_putstr_printf("0x", 1) + 
+		return (ft_putstr_printf("0x", 1) + \
 			ft_putulnbr_base(ptr, "0123456789abcdef"));
 	}
 	return (ft_putstr_printf("(nil)", 1));

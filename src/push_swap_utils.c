@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:04:25 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/21 13:33:50 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:11:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	**ft_tabjoin(char **t1, char **t2)
 
 int	get_val(t_pile **pile, int indice)
 {
-	int 	i;
+	int		i;
 	t_pile	*cur;
 
 	i = 1;
@@ -55,7 +55,7 @@ int	get_val(t_pile **pile, int indice)
 
 int	set_val(t_pile **pile, int index, int val)
 {
-	int 	i;
+	int		i;
 	t_pile	*cur;
 
 	i = 0;
@@ -83,21 +83,3 @@ void	reajust_index(t_pile **pile)
 		cur = cur->next;
 	}
 }
-
-/* int	main(int argc, char **argv)
-{
-	char **t1;
-	char **t2;
-	char **tab;
-
-(void) argc;
-	t1 = ft_split(argv[1], ' ');
-	t2 = ft_split(argv[2], ' ');
-	tab = ft_tabjoin(t1, t2);
-	int i = 0;
-	while(tab[i])
-	{
-		ft_printf("%s\n", tab[i]);
-		i++;
-	}
-} */
