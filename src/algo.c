@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:33:11 by nfradet           #+#    #+#             */
-/*   Updated: 2024/01/21 18:14:35 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/01/21 23:12:48 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,33 +149,8 @@ int	get_ind_to_push(t_piles *piles)
 	return (index);
 }
 
-void	do_moves(t_piles *piles, t_nbrot rot)
+void	do_moves_indep(t_piles *piles, t_nbrot rot)
 {
-	int	indenta;
-	int	indentb;
-
-	if (rot.a < 0)
-		indenta = 1;
-	else
-		indenta = -1;
-	
-
-}
-
-void	do_moves(t_piles *piles, t_nbrot rot)
-{
-	while (rot.a < 0 && rot.b < 0)
-	{
-		ft_move(piles, "rrr");
-		rot.a += 1;
-		rot.b += 1;
-	}
-	while (rot.a > 0 && rot.b > 0)
-	{
-		ft_move(piles, "rr");
-		rot.a -= 1;
-		rot.b -= 1;
-	}
 	while (rot.a > 0)
 	{
 		ft_move(piles, "ra");
@@ -196,6 +171,23 @@ void	do_moves(t_piles *piles, t_nbrot rot)
 		ft_move(piles, "rb");
 		rot.b -= 1;
 	}
+}
+
+void	do_moves(t_piles *piles, t_nbrot rot)
+{
+	while (rot.a < 0 && rot.b < 0)
+	{
+		ft_move(piles, "rrr");
+		rot.a += 1;
+		rot.b += 1;
+	}
+	while (rot.a > 0 && rot.b > 0)
+	{
+		ft_move(piles, "rr");
+		rot.a -= 1;
+		rot.b -= 1;
+	}
+	do_moves_indep(piles, rot);
 }
 
 void	first_part(t_piles *piles)

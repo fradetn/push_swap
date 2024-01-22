@@ -79,14 +79,15 @@ int			get_ind_to_put(t_pile *b, int val);
 int			get_ind_to_push(t_piles *piles);
 t_nbrot		get_rotations(t_piles *piles, int ia, int ib);
 int			get_nbmoves(t_nbrot rot);
+void		do_moves(t_piles *piles, t_nbrot rot);
+
+/*maths functions*/
 int			ft_min(int a, int b);
 int			ft_max(int a, int b);
 int			ft_abs(int nbr);
+int			ft_sign(int nb);
 int			ft_min_abs(int a, int b);
 int			ft_max_abs(int a, int b);
-void		do_moves(t_piles *piles, t_nbrot rot);
-
-
 
 /*Tests functions*/
 int			test_indtoput_fct(t_pile *pile, int val, int res);
